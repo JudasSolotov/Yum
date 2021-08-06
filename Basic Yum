@@ -1,0 +1,21 @@
+DVD => Packages => Terminal
+rpm -ivh deltarpm*
+rpm -ivh python-deltarpm*
+rpm -ivh createrepo*
+rpm -ivh vsftpd*
+systemctl enable vsftpd
+systemctl start vsftpd
+systemctl status vsftpd
+cd ..
+cp -rv Packages /var/ftp/pub/Packages
+createrepo /var/ftp/pub
+gedit /etc/yum.repos.d/server.repo
+
+[SERVER]
+name=Red Hat Enterprise Linux 7.x
+baseurl=file:///var/ftp/pub
+enable=1
+gpgcheck=0
+
+yum repolist
+Snapshot time
